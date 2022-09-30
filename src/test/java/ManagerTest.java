@@ -1,6 +1,4 @@
-            //package ru.netology;
 
-//import repository.Repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.*;
@@ -11,7 +9,7 @@ public class ManagerTest {
 
     Repository repository = new Repository();
     Manager manager = new Manager(repository);
-    Product book = new Book(1, "Буратино", 5,  "Толстой");
+    Product book = new Book(1, "Буратино", 500,  "Толстой");
     Product smartphone = new Smartphone(2, "Xperia", 100000, "Sony");
 
 
@@ -21,7 +19,7 @@ public class ManagerTest {
     manager.add(book);
     manager.add(smartphone);
     }
-
+                   // КНИГИ
     @Test
     public void findAuthorBook() {
         Product[] expected = {book};
@@ -37,6 +35,20 @@ public class ManagerTest {
     }
 
     @Test
+    public void notFindAuthorBook() {
+        Product[] expected = {};
+        Product[] actual = manager.searchBy(null);
+        assertArrayEquals(expected,actual);
+    }
+
+
+
+
+
+
+
+    // Смартфоны
+    @Test
     public void findNameManufacturerSmartphone() {
         Product[] expected = {smartphone};
         Product[] actual = manager.searchBy("Sony");
@@ -49,6 +61,11 @@ public class ManagerTest {
         assertArrayEquals(expected,actual);
     }
 
-
+    @Test
+    public void notFindNull() {
+        Product[] expected = {};
+        Product[] actual = manager.searchBy(null);
+        assertArrayEquals(expected,actual);
+    }
 
 }
