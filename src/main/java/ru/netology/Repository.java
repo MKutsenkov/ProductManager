@@ -1,4 +1,5 @@
 package ru.netology;
+
 import ru.netology.Product;
 
 public class Repository {
@@ -17,6 +18,17 @@ public class Repository {
         return products;
     }
 
+    public Product findId(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+
+        return null;
+    }
+
+
     public Product[] remId(int id) {
         int length = products.length - 1;
         Product[] add1 = new Product[length];
@@ -28,6 +40,11 @@ public class Repository {
             }
         }
         products = add1;
+        return products;
+    }
+
+
+    public Product[] findAll() {
         return products;
     }
 }
