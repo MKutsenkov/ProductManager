@@ -1,13 +1,10 @@
 package ru.netology;
 
 public class Book extends Product {
-    private String author;
+    private final String author;
 
-    public Book() {
-    }
-
-    public Book(int id, String name, int price, String author) {
-        super(id, name, price);
+    public Book(String name, int price, String author) {
+        super(name, price);
         this.author = author;
     }
 
@@ -15,7 +12,7 @@ public class Book extends Product {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public boolean match(String text) {
+        return super.match(text) || getAuthor().equalsIgnoreCase(text);
     }
 }

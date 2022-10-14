@@ -1,25 +1,20 @@
 package ru.netology;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Product {
-    protected int id;
+    protected final int id;
     protected String name;
     protected int price;
 
-    public Product() {
-    }
-
-    public Product(int id, String name, int price) {
-        this.id = id;
+    public Product(String name, int price) {
+        this.id = newId();
         this.name = name;
         this.price = price;
     }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -38,5 +33,13 @@ public class Product {
         this.price = price;
     }
 
+    public boolean match(String text) {
+        return getName().equalsIgnoreCase(text);
+    }
 
+    private static final AtomicInteger idCounter = new AtomicInteger();
+
+    protected static int newId() {
+        return idCounter.getAndIncrement();
+    }
 }
